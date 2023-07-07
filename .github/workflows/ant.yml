@@ -1,0 +1,92 @@
+function criarRodizio() {
+  var funcionarios = [
+    ["Rebeca", "Paula", "Laura", "Edilaine"],
+    ["Larissa Reis", "Paula", "Shayane", "Monica"],
+    ["Rebeca", "Paula", "Laura", "Edilaine", "Shayane"],
+    ["Monica", "Rebeca", "Laura", "Edilaine", "Shayane"],
+    ["Monica", "Rebeca", "Laura", "Edilaine", "Shayane"]
+  ];
+
+  var funcoes = [
+    ["Limpeza do Banheiro", "Limpeza da Loja", "Limpeza das Louças"],
+    ["Limpeza do Banheiro", "Limpeza da Loja", "Limpeza das Louças"],
+    ["Limpeza do Banheiro", "Limpeza da Loja", "Limpeza das Louças"],
+    ["Limpeza do Banheiro", "Limpeza da Loja", "Limpeza das Louças"],
+    ["Limpeza do Banheiro", "Limpeza da Loja", "Limpeza das Louças"]
+  ];
+
+  var horarios = [
+    [
+      ["6:00 às 7:00", "7:00 às 9:00", "9:00 às 10:00"],
+      ["10:00 às 11:00", "11:00 às 13:00", "13:00 às 14:00"],
+      ["13:40 às 14:40", "14:40 às 16:40", "16:40 às 17:40"],
+      ["22:00 às 23:00", "23:00 às 1:00", "1:00 às 2:00"]
+    ],
+    [
+      ["6:00 às 7:00", "7:00 às 9:00", "9:00 às 10:00"],
+      ["9:00 às 10:00", "10:00 às 12:00", "12:00 às 13:00"],
+      ["13:40 às 14:40", "14:40 às 16:40", "16:40 às 17:40"],
+      ["22:00 às 23:00", "23:00 às 1:00", "1:00 às 2:00"]
+    ],
+    [
+      ["6:00 às 7:00", "7:00 às 9:00", "9:00 às 10:00"],
+      ["9:00 às 10:00", "10:00 às 12:00", "12:00 às 13:00"],
+      ["13:40 às 14:40", "14:40 às 16:40", "16:40 às 17:40"],
+      ["22:00 às 23:00", "23:00 às 1:00", "1:00 às 2:00"],
+      ["15:00 às 16:00", "16:00 às 18:00", "18:00 às 19:00"]
+    ],
+    [
+      ["6:00 às 7:00", "7:00 às 9:00", "9:00 às 10:00"],
+      ["9:00 às 10:00", "10:00 às 12:00", "12:00 às 13:00"],
+      ["13:40 às 14:40", "14:40 às 16:40", "16:40 às 17:40"],
+      ["22:00 às 23:00", "23:00 às 1:00", "1:00 às 2:00"],
+      ["15:00 às 16:00", "16:00 às 18:00", "18:00 às 19:00"]
+    ],
+    [
+      ["6:00 às 7:00", "7:00 às 9:00", "9:00 às 10:00"],
+      ["9:00 às 10:00", "10:00 às 12:00", "12:00 às 13:00"],
+      ["13:40 às 14:40", "14:40 às 16:40", "16:40 às 17:40"],
+      ["22:00 às 23:00", "23:00 às 1:00", "1:00 às 2:00"],
+      ["15:00 às 16:00", "16:00 às 18:00", "18:00 às 19:00"]
+    ]
+  ];
+
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+
+  var tabelaRodizio = sheet.getRange("A1");
+
+  tabelaRodizio.setValue("Dias da Semana");
+  tabelaRodizio.offset(0, 1).setValue("Horários");
+  tabelaRodizio.offset(0, 2).setValue("Funcionário");
+  tabelaRodizio.offset(0, 3).setValue("Função");
+
+  var k = 0;
+
+  for (var i = 0; i < horarios.length; i++) {
+    var diaSemana = ["Sábado", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta"][i];
+
+    for (var j = 0; j < horarios[i][0].length; j++) {
+      var horarioBanheiro = horarios[i][0][j];
+      var horarioLoja = horarios[i][1][j];
+      var horarioLoucas = horarios[i][2][j];
+
+      var funcionarioBanheiro = funcionarios[i][j % funcionarios[i].length];
+      var funcionarioLoja = funcionarios[i][j % funcionarios[i].length];
+      var funcionarioLoucas = funcionarios[i][j % funcionarios[i].length];
+
+      var funcaoBanheiro = funcoes[i][0];
+      var funcaoLoja = funcoes[i][1];
+      var funcaoLoucas = funcoes[i][2];
+
+      k++;
+      tabelaRodizio.offset(k, 0).setValue(diaSemana);
+      tabelaRodizio.offset(k, 1).setValue(horarioBanheiro);
+      tabelaRodizio.offset(k, 2).setValue(funcionarioBanheiro);
+      tabelaRodizio.offset(k, 3).setValue(funcaoBanheiro);
+
+      k++;
+      tabelaRodizio.offset(k, 0).setValue(diaSemana);
+      tabelaRodizio.offset(k, 1).setValue(horarioLoja);
+      tabelaRodizio.offset(k, 2).setValue(funcionarioLoja);
+      tabelaRodizio.offset(k, 3
